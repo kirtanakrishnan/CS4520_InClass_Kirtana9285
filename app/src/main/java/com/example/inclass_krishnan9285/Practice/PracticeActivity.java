@@ -1,4 +1,4 @@
-package com.example.inclass_krishnan9285;
+package com.example.inclass_krishnan9285.Practice;
 
 import static android.content.ContentValues.TAG;
 
@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.example.inclass_krishnan9285.R;
 
 public class PracticeActivity extends AppCompatActivity {
 

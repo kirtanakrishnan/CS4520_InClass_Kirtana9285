@@ -16,4 +16,14 @@
     <string name="inchesHint">inches</string>
     <string name="empty" />
     <string name="calculateBMIText">Click on Calculate BMI to find your BMI</string>
+    <string name="inclass02">InClass02</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="iUse">I use</string>
+    <string name="android">Android</string>
+    <string name="iOS">iOS</string>
+    <string name="currentMood">Your current mood:</string>
+    <string name="submit">Submit</string>
+    <string name="selectAvatarText">Select Your Avatar</string>
+    <string name="happy">Happy</string>
 </resources>
