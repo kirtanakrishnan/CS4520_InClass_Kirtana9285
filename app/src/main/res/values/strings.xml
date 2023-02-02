@@ -26,4 +26,7 @@
     <string name="submit">Submit</string>
     <string name="selectAvatarText">Select Your Avatar</string>
     <string name="happy">Happy</string>
+    <string name="nameResult">Name: </string>
+    <string name="emailResult">Email: </string>
+    <string name="iAm">I am</string>
 </resources>
