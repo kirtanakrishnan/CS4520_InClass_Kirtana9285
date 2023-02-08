@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class InClass03 extends AppCompatActivity {
+public class InClass03 extends AppCompatActivity implements SendAvatar {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -12,9 +12,15 @@ public class InClass03 extends AppCompatActivity {
         setContentView(R.layout.activity_in_class03);
         setTitle("Edit Profile");
 
-
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.containerFragment, new EditProfileFragment())
-                .commit();
     }
+
+    @Override
+    public void fromAvatar(int id) {
+
+        EditProfileFragment fragment =
+                (EditProfileFragment) getSupportFragmentManager().findFragmentByTag("fragment");
+
+        fragment.displayReceivedAvatar(id);
+    }
+
 }

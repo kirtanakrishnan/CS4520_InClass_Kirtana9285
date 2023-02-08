@@ -16,7 +16,9 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.inclass_krishnan9285.InClass02.InClass02;
 import com.example.inclass_krishnan9285.InClass02.SelectAvatar;
@@ -50,7 +52,7 @@ public class EditProfileFragment extends Fragment {
     private Button submit2;
 
 
-   //k IfromFragmentToActivity sendData;
+    //k IfromFragmentToActivity sendData;
 
     public EditProfileFragment() {
 
@@ -71,7 +73,6 @@ public class EditProfileFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-
 
 
     @Override
@@ -121,33 +122,33 @@ public class EditProfileFragment extends Fragment {
 
         submit2 = rootView.findViewById(R.id.submit2);
 
-
         selectAvatar2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG, "clicked avatar");
+                Fragment fragment = new AvatarFragment();
 
-
-
+                FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+                ft.replace(R.id.frameLayout, fragment, "fragment");
+                ft.addToBackStack("fragment");
+                ft.commit();
             }
         });
 
-
-        /*@Override
-        public void onAttach(@NonNull Context context) {
-            super.onAttach(context);
-.
-            if (context instanceof IfromFragmentToActivity){
-                sendData = (IfromFragmentToActivity) context;
-            }else{
-                throw new RuntimeException(context.toString()+ "must implement IfromFragmentToActivity");
-            }
-
-        }
-
-        interface IfromFragmentToActivity{
-            void fromFragment(boolean isOn, String message);
-        }**/
-    return rootView;
+        return rootView;
 
     }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        selectAvatar2 = (ImageView) view.findViewById(R.id.select_avatar2);
+    }
+
+    protected void displayReceivedAvatar(int id) {
+        selectAvatar2.setImageResource(id);
+    }
+
 }
+
