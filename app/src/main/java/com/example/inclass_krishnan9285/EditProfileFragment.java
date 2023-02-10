@@ -1,7 +1,6 @@
 package com.example.inclass_krishnan9285;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,12 +15,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
-import com.example.inclass_krishnan9285.InClass02.InClass02;
-import com.example.inclass_krishnan9285.InClass02.SelectAvatar;
 
 public class EditProfileFragment extends Fragment {
 
@@ -51,8 +45,11 @@ public class EditProfileFragment extends Fragment {
     private int happyFragment;
     private Button submit2;
 
+    InterfaceToAvatar interfaceToAvatar;
 
-    //k IfromFragmentToActivity sendData;
+
+
+
 
     public EditProfileFragment() {
 
@@ -105,7 +102,7 @@ public class EditProfileFragment extends Fragment {
         selectAvatar2 = rootView.findViewById(R.id.select_avatar2);
         selectAvatar2.setImageResource(selectAvatarFragment);
 
-        //iUse2 = rootView.findViewById(R.id.iUse2);
+//        iUse2 = rootView.findViewById(R.id.iUse2);
         android = rootView.findViewById(R.id.android);
         iOS = rootView.findViewById(R.id.iOS);
 
@@ -125,18 +122,23 @@ public class EditProfileFragment extends Fragment {
         selectAvatar2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "clicked avatar");
-                Fragment fragment = new AvatarFragment();
-
-                FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                ft.replace(R.id.frameLayout, fragment, "fragment");
-                ft.addToBackStack("fragment");
-                ft.commit();
+                interfaceToAvatar.toAvatar();
             }
         });
 
         return rootView;
 
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        if (context instanceof InterfaceToAvatar){
+            interfaceToAvatar = (InterfaceToAvatar) context;
+        } else{
+            throw new RuntimeException(context.toString() + "must implement InterfaceToAvatar");
+        }
     }
 
     @Override
@@ -149,6 +151,7 @@ public class EditProfileFragment extends Fragment {
     protected void displayReceivedAvatar(int id) {
         selectAvatar2.setImageResource(id);
     }
+
 
 }
 

@@ -29,9 +29,6 @@ public class AvatarFragment extends Fragment {
 
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     private ImageView avatarf6;
     private int avatarf6fragment;
     private ImageView avatarf7;
@@ -45,7 +42,7 @@ public class AvatarFragment extends Fragment {
     private ImageView avatarm8;
     private int avatarm8fragment;
 
-    SendAvatar sendAvatar;
+    InterfaceSendAvatar sendAvatar;
 
     public AvatarFragment() {
         // Required empty public constructor
@@ -157,10 +154,10 @@ public class AvatarFragment extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
-        if (context instanceof SendAvatar){
-               sendAvatar = (SendAvatar) context;
+        if (context instanceof InterfaceSendAvatar){
+               sendAvatar = (InterfaceSendAvatar) context;
         } else{
-               throw new RuntimeException(context.toString()+ "must implement SendAvatar");
+               throw new RuntimeException(context.toString()+ "must implement InterfaceSendAvatar");
         }
     }
 }

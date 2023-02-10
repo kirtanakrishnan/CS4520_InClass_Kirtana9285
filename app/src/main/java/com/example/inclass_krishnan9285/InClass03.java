@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class InClass03 extends AppCompatActivity implements SendAvatar {
+public class InClass03 extends AppCompatActivity implements InterfaceSendAvatar, InterfaceToAvatar {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,5 +22,21 @@ public class InClass03 extends AppCompatActivity implements SendAvatar {
 
         fragment.displayReceivedAvatar(id);
     }
+
+    @Override
+    public void toAvatar() {
+     /* AvatarFragment avatarFragment =
+             (AvatarFragment) getSupportFragmentManager().findFragmentByTag("fragmentAvatar");*/
+
+      AvatarFragment avatarFragment = new AvatarFragment();
+
+
+       getSupportFragmentManager().beginTransaction()
+               .replace(R.id.frameLayout, avatarFragment, "fragmentAvatar")
+               .addToBackStack(null)
+                .commit();
+    }
+
+
 
 }
