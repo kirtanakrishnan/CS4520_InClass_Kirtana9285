@@ -82,8 +82,8 @@ public class ProfileResultsFragment extends Fragment {
 
         nameText2.setText(resultUser.getEditTextName());
         emailText2.setText(resultUser.getEditTextEmail());
-        useText2.setText(resultUser.getDevice());
-        amText2.setText(resultUser.getMood());
+        useText2.setText(resultUser.getDevice() + "!");
+        amText2.setText(resultUser.getMood() + "!");
         moodResult2.setImageResource(resultUser.getMoodImageResource());
         avatarResult2.setImageResource(resultUser.getAvatarImageResource());
 
