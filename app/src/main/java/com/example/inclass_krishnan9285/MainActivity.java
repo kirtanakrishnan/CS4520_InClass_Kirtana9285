@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.example.inclass_krishnan9285.InClass01.InClass01;
 import com.example.inclass_krishnan9285.InClass02.InClass02;
+import com.example.inclass_krishnan9285.InClass03.InClass03;
 import com.example.inclass_krishnan9285.Practice.PracticeActivity;
 
 public class MainActivity extends AppCompatActivity {

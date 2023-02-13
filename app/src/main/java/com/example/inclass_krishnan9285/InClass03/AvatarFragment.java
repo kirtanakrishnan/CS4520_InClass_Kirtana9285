@@ -1,4 +1,4 @@
-package com.example.inclass_krishnan9285;
+package com.example.inclass_krishnan9285.InClass03;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.example.inclass_krishnan9285.R;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link AvatarFragment#newInstance} factory method to
@@ -18,8 +20,7 @@ import android.widget.ImageView;
  */
 public class AvatarFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String FEM_6 = "female6";
     private static final String FEM_7 = "female7";
     private static final String FEM_8 = "female8";
@@ -28,7 +29,7 @@ public class AvatarFragment extends Fragment {
     private static final String MALE_8 = "male8";
 
 
-    // TODO: Rename and change types of parameters
+
     private ImageView avatarf6;
     private int avatarf6fragment;
     private ImageView avatarf7;
@@ -45,7 +46,7 @@ public class AvatarFragment extends Fragment {
     InterfaceSendAvatar sendAvatar;
 
     public AvatarFragment() {
-        // Required empty public constructor
+
     }
 
     public static AvatarFragment newInstance(int avatarf6fragment, int avatarf7fragment,
@@ -83,26 +84,22 @@ public class AvatarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
+        getActivity().setTitle("Select Avatar");
+
         View avatarView = inflater.inflate(R.layout.fragment_avatar, container, false);
 
         avatarf6 = avatarView.findViewById(R.id.avatarf6);
-       // avatarf6.setImageResource(avatarf6fragment);
 
         avatarf7 = avatarView.findViewById(R.id.avatarf7);
-       // avatarf7.setImageResource(avatarf7fragment);
 
         avatarf8 = avatarView.findViewById(R.id.avatarf8);
-      //  avatarf8.setImageResource(avatarf8fragment);
 
         avatarm6 = avatarView.findViewById(R.id.avatarm6);
-      //  avatarm6.setImageResource(avatarm6fragment);
 
         avatarm7 = avatarView.findViewById(R.id.avatarm7);
-       // avatarm7.setImageResource(avatarm7fragment);
 
         avatarm8 = avatarView.findViewById(R.id.avatarm8);
-     //   avatarm8.setImageResource(avatarm8fragment);
 
         avatarf6.setOnClickListener(new View.OnClickListener() {
             @Override

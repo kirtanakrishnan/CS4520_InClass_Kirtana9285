@@ -5,7 +5,7 @@
     android:id="@+id/selectAvatarLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AvatarFragment">
+    tools:context=".InClass03.AvatarFragment">
 
     <ImageView
         android:id="@+id/avatarm6"
@@ -22,12 +22,11 @@
         android:id="@+id/avatarm7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
         android:layout_marginEnd="48dp"
-        android:layout_marginBottom="88dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/avatarm2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.82"
         app:srcCompat="@drawable/avatar_m_1" />
 
     <ImageView
@@ -37,8 +36,7 @@
         android:layout_marginEnd="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/avatarm6"
-        app:layout_constraintVertical_bias="0.184"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/avatar_m_2" />
 
     <ImageView
@@ -48,7 +46,8 @@
         android:layout_marginStart="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/avatarf7"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.82"
         app:srcCompat="@drawable/avatar_f_3" />
 
     <ImageView
@@ -56,11 +55,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginBottom="304dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/avatarf8"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/avatar_f_2" />
 
     <ImageView

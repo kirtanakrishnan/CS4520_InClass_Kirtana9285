@@ -9,7 +9,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/containerFragment"
-        android:name="com.example.inclass_krishnan9285.EditProfileFragment"
+        android:name="com.example.inclass_krishnan9285.InClass03.EditProfileFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

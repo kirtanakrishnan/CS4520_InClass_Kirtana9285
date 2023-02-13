@@ -1,8 +1,8 @@
-package com.example.inclass_krishnan9285;
+package com.example.inclass_krishnan9285.InClass03;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +13,16 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.inclass_krishnan9285.InClass02.Result;
+import com.example.inclass_krishnan9285.R;
+
 public class EditProfileFragment extends Fragment {
 
-    final String TAG = "demo";
 
     private static final String NAME_TEXT = "textName";
     private static final String EMAIL_TEXT = "textEmail";
@@ -43,13 +46,16 @@ public class EditProfileFragment extends Fragment {
     private TextView currentMoodDisplay2;
     private String currentMoodDisplayFragment;
     private SeekBar seekBarMood2;
-    private ImageView happy2;
+    private ImageView mood;
     private int happyFragment;
     private Button submit2;
 
     InterfaceToAvatar interfaceToAvatar;
+    InterfaceToResult interfaceToResult;
 
     View rootView;
+
+    Result resultUser = new Result();
 
 
     public EditProfileFragment() {
@@ -76,7 +82,6 @@ public class EditProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "FirstFragment onCreate: ");
         if (getArguments() != null) {
             editTextNameFragment = getArguments().getString(NAME_TEXT);
             editTextEmailFragment = getArguments().getString(EMAIL_TEXT);
@@ -99,7 +104,6 @@ public class EditProfileFragment extends Fragment {
 
         View view = inflator.inflate(R.layout.fragment_edit_profile, container, false);
         rootView = view;
-        Log.d(TAG, "FirstFragment onCreateView: ");
         editTextName2 = rootView.findViewById(R.id.editTextName2);
         editTextName2.setText(editTextNameFragment);
 
@@ -107,7 +111,6 @@ public class EditProfileFragment extends Fragment {
         editTextEmail2.setText(editTextEmailFragment);
 
         selectAvatar2 = rootView.findViewById(R.id.select_avatar2);
-     // selectAvatar2.setImageResource(selectAvatarFragment);
         iUse2 = rootView.findViewById(R.id.iUse2);
 
        useGroup2 = rootView.findViewById(R.id.useGroup2);
@@ -115,15 +118,12 @@ public class EditProfileFragment extends Fragment {
         iOS = rootView.findViewById(R.id.iOS);
 
         currentMood2 = rootView.findViewById(R.id.currentMood2);
-       // currentMood2.setText(currentMoodFragment);
 
         currentMoodDisplay2 = rootView.findViewById(R.id.currentMoodDisplay2);
-       // currentMoodDisplay2.setText(currentMoodDisplayFragment);
 
         seekBarMood2 = rootView.findViewById(R.id.seekBarMood2);
 
-        happy2 = rootView.findViewById(R.id.happy2);
-       // happy2.setImageResource(happyFragment);
+        mood = rootView.findViewById(R.id.happy2);
 
         submit2 = rootView.findViewById(R.id.submit2);
 
@@ -131,6 +131,79 @@ public class EditProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 interfaceToAvatar.toAvatar();
+            }
+        });
+
+        seekBarMood2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                if (b == true) {
+                    if (i == 0) {
+                        mood.setImageResource(R.drawable.angry);
+                        resultUser.setMoodImageResource(R.drawable.angry);
+                        currentMoodDisplay2.setText("Angry");
+                    } else if (i == 1) {
+                        mood.setImageResource(R.drawable.sad);
+                        resultUser.setMoodImageResource(R.drawable.sad);
+                        currentMoodDisplay2.setText("Sad");
+                    } else if (i == 2) {
+                        mood.setImageResource(R.drawable.happy);
+                        resultUser.setMoodImageResource(R.drawable.happy);
+                        currentMoodDisplay2.setText("Happy");
+                    } else if (i == 3) {
+                        mood.setImageResource(R.drawable.awesome);
+                        resultUser.setMoodImageResource(R.drawable.awesome);
+                        currentMoodDisplay2.setText("Awesome");
+                    }
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        resultUser.setMoodImageResource(R.drawable.happy);
+        submit2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String nameToString = editTextName2.getText().toString().trim();
+                String emailToString = editTextEmail2.getText().toString().trim();
+                if (nameToString.equals("")) {
+                    Toast.makeText(getActivity(), "Enter your name!", Toast.LENGTH_LONG).show();
+                } else if (!(!emailToString.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(emailToString).matches())){
+                    Toast.makeText(getActivity(), "Enter valid email address!", Toast.LENGTH_LONG).show();
+                } else if (useGroup2.getCheckedRadioButtonId() == -1) {
+                    Toast.makeText(getActivity(), "Please select a device!", Toast.LENGTH_LONG).show();
+                } else {
+
+
+                    resultUser.setEditTextEmail(emailToString);
+                    resultUser.setEditTextName(nameToString);
+
+
+                    int deviceID = useGroup2.getCheckedRadioButtonId();
+                    RadioButton deviceButton = (RadioButton) useGroup2.findViewById(deviceID);
+                    String device = (String) deviceButton.getText();
+                    String moodDisplay = currentMoodDisplay2.getText().toString().trim();
+
+
+                    resultUser.setDevice(device);
+                    resultUser.setMood(moodDisplay);
+
+
+
+                    interfaceToResult.toResult(resultUser);
+
+                }
+
             }
         });
 
@@ -142,10 +215,12 @@ public class EditProfileFragment extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
-        if (context instanceof InterfaceToAvatar){
+        if (context instanceof InterfaceToAvatar || context instanceof InterfaceToResult){
             interfaceToAvatar = (InterfaceToAvatar) context;
+            interfaceToResult = (InterfaceToResult) context;
         } else{
-            throw new RuntimeException(context.toString() + "must implement InterfaceToAvatar");
+            throw new RuntimeException(context.toString() + "must implement InterfaceToAvatar" +
+                    " or InterfaceToResult");
         }
     }
 
@@ -160,6 +235,8 @@ public class EditProfileFragment extends Fragment {
     protected void displayReceivedAvatar(int id) {
 
         selectAvatar2.setImageResource(id);
+
+        resultUser.setAvatarImageResource(id);
     }
 
 
