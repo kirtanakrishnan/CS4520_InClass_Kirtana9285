@@ -87,22 +87,22 @@ public class AvatarFragment extends Fragment {
         View avatarView = inflater.inflate(R.layout.fragment_avatar, container, false);
 
         avatarf6 = avatarView.findViewById(R.id.avatarf6);
-        avatarf6.setImageResource(avatarf6fragment);
+       // avatarf6.setImageResource(avatarf6fragment);
 
         avatarf7 = avatarView.findViewById(R.id.avatarf7);
-        avatarf7.setImageResource(avatarf7fragment);
+       // avatarf7.setImageResource(avatarf7fragment);
 
         avatarf8 = avatarView.findViewById(R.id.avatarf8);
-        avatarf8.setImageResource(avatarf8fragment);
+      //  avatarf8.setImageResource(avatarf8fragment);
 
         avatarm6 = avatarView.findViewById(R.id.avatarm6);
-        avatarm6.setImageResource(avatarm6fragment);
+      //  avatarm6.setImageResource(avatarm6fragment);
 
         avatarm7 = avatarView.findViewById(R.id.avatarm7);
-        avatarm7.setImageResource(avatarm7fragment);
+       // avatarm7.setImageResource(avatarm7fragment);
 
         avatarm8 = avatarView.findViewById(R.id.avatarm8);
-        avatarm8.setImageResource(avatarm8fragment);
+     //   avatarm8.setImageResource(avatarm8fragment);
 
         avatarf6.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,6 +122,8 @@ public class AvatarFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 sendAvatar.fromAvatar(R.drawable.avatar_f_1);
+
+
             }
         });
 

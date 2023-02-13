@@ -33,9 +33,11 @@ public class EditProfileFragment extends Fragment {
     private String editTextEmailFragment;
     private ImageView selectAvatar2;
     private int selectAvatarFragment;
-    private RadioGroup iUse2;
+    private TextView iUse2;
     private RadioButton android;
     private RadioButton iOS;
+
+    private RadioGroup useGroup2;
     private TextView currentMood2;
     private String currentMoodFragment;
     private TextView currentMoodDisplay2;
@@ -47,8 +49,7 @@ public class EditProfileFragment extends Fragment {
 
     InterfaceToAvatar interfaceToAvatar;
 
-
-
+    View rootView;
 
 
     public EditProfileFragment() {
@@ -62,7 +63,7 @@ public class EditProfileFragment extends Fragment {
         Bundle args = new Bundle();
         args.putString(NAME_TEXT, textName);
         args.putString(EMAIL_TEXT, textEmail);
-        args.putInt(AVATAR_TEXT, selectAvatar);
+        args.putInt(AVATAR_TEXT, R.id.select_avatar2);
         args.putString(CURRMOOD_TEXT, textCurrentMood);
         args.putString(CURRMOODDISP, textCurrentMoodDisplay);
         args.putInt(MOOD_TEXT, happy);
@@ -91,7 +92,13 @@ public class EditProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflator, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflator.inflate(R.layout.activity_in_class03, container, false);
+
+        if (rootView != null) {
+            return rootView;
+        }
+
+        View view = inflator.inflate(R.layout.fragment_edit_profile, container, false);
+        rootView = view;
         Log.d(TAG, "FirstFragment onCreateView: ");
         editTextName2 = rootView.findViewById(R.id.editTextName2);
         editTextName2.setText(editTextNameFragment);
@@ -100,22 +107,23 @@ public class EditProfileFragment extends Fragment {
         editTextEmail2.setText(editTextEmailFragment);
 
         selectAvatar2 = rootView.findViewById(R.id.select_avatar2);
-        selectAvatar2.setImageResource(selectAvatarFragment);
+     // selectAvatar2.setImageResource(selectAvatarFragment);
+        iUse2 = rootView.findViewById(R.id.iUse2);
 
-//        iUse2 = rootView.findViewById(R.id.iUse2);
+       useGroup2 = rootView.findViewById(R.id.useGroup2);
         android = rootView.findViewById(R.id.android);
         iOS = rootView.findViewById(R.id.iOS);
 
         currentMood2 = rootView.findViewById(R.id.currentMood2);
-        currentMood2.setText(currentMoodFragment);
+       // currentMood2.setText(currentMoodFragment);
 
         currentMoodDisplay2 = rootView.findViewById(R.id.currentMoodDisplay2);
-        currentMoodDisplay2.setText(currentMoodDisplayFragment);
+       // currentMoodDisplay2.setText(currentMoodDisplayFragment);
 
         seekBarMood2 = rootView.findViewById(R.id.seekBarMood2);
 
         happy2 = rootView.findViewById(R.id.happy2);
-        happy2.setImageResource(happyFragment);
+       // happy2.setImageResource(happyFragment);
 
         submit2 = rootView.findViewById(R.id.submit2);
 
@@ -146,12 +154,16 @@ public class EditProfileFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         selectAvatar2 = (ImageView) view.findViewById(R.id.select_avatar2);
+
     }
 
     protected void displayReceivedAvatar(int id) {
+
         selectAvatar2.setImageResource(id);
     }
 
 
-}
 
+
+
+}
