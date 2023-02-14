@@ -50,12 +50,12 @@ public class EditProfileFragment extends Fragment {
     private int happyFragment;
     private Button submit2;
 
-    InterfaceToAvatar interfaceToAvatar;
-    InterfaceToResult interfaceToResult;
+    private InterfaceToAvatar interfaceToAvatar;
+    private InterfaceToResult interfaceToResult;
 
-    View rootView;
+    private View rootView;
 
-    Result resultUser = new Result();
+    private Result resultUser = new Result();
 
 
     public EditProfileFragment() {

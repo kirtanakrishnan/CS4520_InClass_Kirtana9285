@@ -43,7 +43,7 @@ public class AvatarFragment extends Fragment {
     private ImageView avatarm8;
     private int avatarm8fragment;
 
-    InterfaceSendAvatar sendAvatar;
+    private InterfaceSendAvatar sendAvatar;
 
     public AvatarFragment() {
 
