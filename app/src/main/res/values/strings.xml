@@ -32,4 +32,10 @@
     <string name="inClass03">InClass03</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="inClass04">InClass04</string>
+    <string name="selectComplexity">Select Complexity:</string>
+    <string name="minimum">Minimum:</string>
+    <string name="maximum">Maximum:</string>
+    <string name="average">Average:</string>
+    <string name="generateNumber">Generate Number</string>
 </resources>
