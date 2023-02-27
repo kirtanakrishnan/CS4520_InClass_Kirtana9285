@@ -10,6 +10,8 @@ import android.widget.Button;
 import com.example.inclass_krishnan9285.InClass01.InClass01;
 import com.example.inclass_krishnan9285.InClass02.InClass02;
 import com.example.inclass_krishnan9285.InClass03.InClass03;
+import com.example.inclass_krishnan9285.InClass04.InClass04;
+import com.example.inclass_krishnan9285.InClass05.InClass05;
 import com.example.inclass_krishnan9285.Practice.PracticeActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonInClass02;
     private Button buttonInClass03;
     private Button buttonInClass04;
+    private Button buttonInClass05;
 
 
     @Override
@@ -31,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
         buttonInClass02 = findViewById(R.id.buttonInClass02);
         buttonInClass03 = findViewById(R.id.buttonInClass03);
         buttonInClass04 = findViewById(R.id.buttonInClass04);
+        buttonInClass05 = findViewById(R.id.buttonInClass05);
+
 
         buttonPractice.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +80,15 @@ public class MainActivity extends AppCompatActivity {
                 Intent toInClass04 = new Intent(MainActivity.this, InClass04.class);
 
                 startActivity(toInClass04);
+            }
+        });
+
+        buttonInClass05.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toInClass05 = new Intent(MainActivity.this, InClass05.class);
+
+                startActivity(toInClass05);
             }
         });
 

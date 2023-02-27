@@ -38,4 +38,8 @@
     <string name="maximum">Maximum:</string>
     <string name="average">Average:</string>
     <string name="generateNumber">Generate Number</string>
+    <string name="searchKeyword">Search Keyword</string>
+    <string name="go">Go</string>
+    <string name="InClass05">InClass05</string>
+    <string name="loading">Loading...</string>
 </resources>
