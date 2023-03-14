@@ -12,6 +12,7 @@ import com.example.inclass_krishnan9285.InClass02.InClass02;
 import com.example.inclass_krishnan9285.InClass03.InClass03;
 import com.example.inclass_krishnan9285.InClass04.InClass04;
 import com.example.inclass_krishnan9285.InClass05.InClass05;
+import com.example.inclass_krishnan9285.InClass06.InClass06;
 import com.example.inclass_krishnan9285.Practice.PracticeActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonInClass03;
     private Button buttonInClass04;
     private Button buttonInClass05;
+    private Button buttonInClass06;
 
 
     @Override
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         buttonInClass03 = findViewById(R.id.buttonInClass03);
         buttonInClass04 = findViewById(R.id.buttonInClass04);
         buttonInClass05 = findViewById(R.id.buttonInClass05);
+        buttonInClass06 = findViewById(R.id.buttonInClass06);
 
 
         buttonPractice.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +92,15 @@ public class MainActivity extends AppCompatActivity {
                 Intent toInClass05 = new Intent(MainActivity.this, InClass05.class);
 
                 startActivity(toInClass05);
+            }
+        });
+
+        buttonInClass06.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toInClass06 = new Intent(MainActivity.this, InClass06.class);
+
+                startActivity(toInClass06);
             }
         });
 
