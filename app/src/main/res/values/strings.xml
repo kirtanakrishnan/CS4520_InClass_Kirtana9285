@@ -51,4 +51,15 @@
     <string name="title">Title:</string>
     <string name="description">Description:</string>
     <string name="publishedAt">Published At:</string>
+    <string name="inClass08">InClass08</string>
+    <string name="firstName">First Name</string>
+    <string name="lastName">Last Name</string>
+    <string name="displayName">Display name</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="registerNow">Don\'t Have an Account? Register Now!</string>
+    <string name="register">Register</string>
+    <string name="confirmPassword">Confirm Password</string>
+    <string name="registerButtonNow">Register Now</string>
+    <string name="enterMessage">Send a Message!</string>
 </resources>

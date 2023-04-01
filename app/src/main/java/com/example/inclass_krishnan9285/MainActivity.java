@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonInClass04;
     private Button buttonInClass05;
     private Button buttonInClass06;
+    private Button buttonInClass08;
 
 
     @Override
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         buttonInClass04 = findViewById(R.id.buttonInClass04);
         buttonInClass05 = findViewById(R.id.buttonInClass05);
         buttonInClass06 = findViewById(R.id.buttonInClass06);
+        buttonInClass08 = findViewById(R.id.buttonInClass08);
+
 
 
         buttonPractice.setOnClickListener(new View.OnClickListener() {
@@ -101,6 +104,15 @@ public class MainActivity extends AppCompatActivity {
                 Intent toInClass06 = new Intent(MainActivity.this, InClass06.class);
 
                 startActivity(toInClass06);
+            }
+        });
+
+        buttonInClass08.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toInClass08 = new Intent(MainActivity.this, InClass08.class);
+
+                startActivity(toInClass08);
             }
         });
 

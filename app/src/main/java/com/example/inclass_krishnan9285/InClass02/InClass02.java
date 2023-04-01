@@ -51,8 +51,8 @@ public class InClass02 extends AppCompatActivity {
 
         setTitle("Edit Profile Activity");
 
-        editTextName = findViewById(R.id.editTextName);
-        editTextEmail = findViewById(R.id.editTextEmail);
+        editTextName = findViewById(R.id.editTextMessage);
+        editTextEmail = findViewById(R.id.messageEditText);
         selectAvatar = findViewById(R.id.select_avatar);
         iUse = findViewById(R.id.iUse);
         useGroup = findViewById(R.id.useGroup);
