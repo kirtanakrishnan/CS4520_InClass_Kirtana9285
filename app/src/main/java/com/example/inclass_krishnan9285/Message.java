@@ -3,12 +3,11 @@ package com.example.inclass_krishnan9285;
 import java.io.Serializable;
 
 public class Message implements Serializable {
-    private String email;
+    private String displayName;
     private String message;
 
-
-    public Message(String email, String message) {
-        this.email = email;
+    public Message(String displayName, String message) {
+        this.displayName = displayName;
         this.message = message;
 
     }
@@ -23,21 +22,22 @@ public class Message implements Serializable {
     public String getMessage() {
         return message;
     }
+
     public void setMessage(String message) {
         this.message = message;
     }
     public String getUser() {
-        return email;
+        return displayName;
     }
-    public void setUser(String email) {
-        this.email = email;
+    public void setUser(String displayName) {
+        this.displayName = displayName;
     }
 
     @Override
     public String toString() {
         return "Message{" +
                 "message='" + message + '\'' +
-                ", email='" + email + '\'' +
+                ", email='" + displayName + '\'' +
                 '}';
     }
 }

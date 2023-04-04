@@ -1,5 +1,6 @@
 package com.example.inclass_krishnan9285;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -43,17 +44,19 @@ import java.util.Map;
 public class MessengerFragment extends Fragment {
 
     private static final String ARG_MESSAGES = "messages array";
+    private static final String ARG_USERS = "users array";
 
-    private Message mMessage;
-    private int position;
     private String displayName;
     private EditText editTextMessage;
     private Button buttonAddEdit;
 
     private RecyclerView recyclerView;
     private MessagesAdapter messagesAdapter;
+    private UserAdapter userAdapter;
     private RecyclerView.LayoutManager recyclerViewLayoutManager;
     private ArrayList<Message> mMessages;
+    private ArrayList<User> mUsers;
+    private Message mMessage;
 
 
     private Boolean isEdit = false;
@@ -74,6 +77,7 @@ public class MessengerFragment extends Fragment {
         MessengerFragment fragment = new MessengerFragment();
         Bundle args = new Bundle();
         args.putSerializable(ARG_MESSAGES, new ArrayList<Message>());
+        args.putSerializable(ARG_USERS, new ArrayList<User>());
         fragment.setArguments(args);
         return fragment;
     }
@@ -87,6 +91,9 @@ public class MessengerFragment extends Fragment {
             if (args.containsKey(ARG_MESSAGES)) {
                 mMessages = (ArrayList<Message>) args.getSerializable(ARG_MESSAGES);
             }
+            if (args.containsKey(ARG_USERS)) {
+                mUsers = (ArrayList<User>) args.getSerializable(ARG_USERS);
+            }
 
             //            Initializing Firebase...
             db = FirebaseFirestore.getInstance();
@@ -97,6 +104,7 @@ public class MessengerFragment extends Fragment {
 
             //            Loading initial data...
             loadData();
+           // loadUserData();
         }
 
     }
@@ -132,8 +140,10 @@ public class MessengerFragment extends Fragment {
             public void onClick(View view) {
 //                Edit button.....
                 if(isEdit){
+
+                    Message mMessage = new Message();
                     String message = String.valueOf(editTextMessage.getText());
-                    String email = mUser.getEmail();
+                    String displayName = mUser.getDisplayName();
 
                    /* db.collection("users")
                             .document(mUser.getEmail())
@@ -149,36 +159,61 @@ public class MessengerFragment extends Fragment {
 //                Add button....
                 }else{
                     String message = String.valueOf(editTextMessage.getText());
-                    String email = mUser.getEmail();
-                    mMessage = new Message(email, message);
+                    String displayName = mUser.getDisplayName();
+                   // String messageID = mMessage.getMessageID();
+                    mMessage= new Message(displayName, message);
                     addToFirebase(mMessage);
                     clearFields();
                 }
 
-               db.collection("users")
-                        .document("user")
-                        .collection("messages")
-                        .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                            @Override
-                            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                                if(error!=null){
-                                    Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-                                }else{
-//                            retrieving all the elements from Firebase....
-                                    ArrayList<Message> newMessages = new ArrayList<>();
-                                    for(QueryDocumentSnapshot document : value.getResult()){
-                                        newMessages.add(document.);
-                                    }
-//                            replace all the item in the current RecyclerView with the received elements...
-                                    messagesAdapter.setMessages(newMessages);
-                                    messagesAdapter.notifyDataSetChanged();
-                                }
-                            }
-                        });
+
             }
         });
 
 
+        String email = mUser.getEmail();
+
+        db.collection("users")
+                .document(email)
+                .collection("messages")
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if(error!=null){
+                            Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                        }else{
+//                            retrieving all the elements from Firebase....
+                            ArrayList<Message> newMessages = new ArrayList<>();
+                            for(DocumentSnapshot document : value.getDocuments()){
+                                newMessages.add(document.toObject(Message.class));
+                            }
+//                            replace all the item in the current RecyclerView with the received elements...
+                            messagesAdapter.setMessages(newMessages);
+                            messagesAdapter.notifyDataSetChanged();
+                        }
+                    }
+                });
+              /*  .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @SuppressLint("NotifyDataSetChanged")
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if(error!=null){
+                            Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                        }else{
+//                            retrieving all the elements from Firebase....
+                            ArrayList<Message> newMessages = new ArrayList<>();
+                            //for(DocumentSnapshot document : value.getDocuments()){
+                            //    newMessages.add(document.toObject(Message.class));
+                            //  }
+                            for(DocumentSnapshot document : value.getDocuments()) {
+                                newMessages.add(document.toObject(Message.class));
+                            }
+//                            replace all the item in the current RecyclerView with the received elements...
+                            messagesAdapter.setMessages(newMessages);
+                            messagesAdapter.notifyDataSetChanged();
+                        }
+                    }
+                });*/
 
         return messengerView;
     }
@@ -186,11 +221,11 @@ public class MessengerFragment extends Fragment {
     private void addToFirebase(Message message) {
         //        Add the new message to Firebase Cloud Firestore...
 
-        //Map<String, Object> chat = new HashMap<>();
-        //chat.put("message", mMessage);
+        String email = mUser.getEmail();
+
 
         db.collection("users")
-                .document("user")
+                .document(email)
                 .collection("messages")
                 .add(mMessage)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -198,6 +233,7 @@ public class MessengerFragment extends Fragment {
                     public void onSuccess(DocumentReference documentReference) {
                         Log.d("demo", "Message added: " + documentReference.getId());
                         Toast.makeText(getContext(),"Message added!", Toast.LENGTH_SHORT).show();
+                      //  loadData();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -208,13 +244,22 @@ public class MessengerFragment extends Fragment {
                     }
                 });
 
+
+
+
     }
 
     //    Updating the RecyclerView when something gets changed...
     public void updateRecyclerView(ArrayList<Message> messages){
         this.mMessages = messages;
+        Log.d("demo", "updates recyclerview");
         messagesAdapter.notifyDataSetChanged();
     }
+
+    /*public void updateUserRecyclerView(ArrayList<User> friends){
+        this.mUsers = friends;
+        userAdapter.notifyDataSetChanged();
+    }*/
 
     //    Enabling Edit.....
     public void enableEdit(Message message){
@@ -236,18 +281,19 @@ public class MessengerFragment extends Fragment {
 
     private void loadData() {
         ArrayList<Message> messages = new ArrayList<>();
+        String email = mUser.getEmail();
+
+
         db.collection("users")
-            //    .document(mUser.getEmail())
-                //    .collection("friends")
+                .document(email)
+                .collection("messages")
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()){
                             for(QueryDocumentSnapshot documentSnapshot: task.getResult()){
-//                                Just like GSON..... Friend has to be Serializable,
-//                                has to exactly match the variable names with the keys in the documents,
-//                                and must have getters, setters, and toString() ....
-
+//
+                                Log.d("demo", "loaded messages");
                                 Message message = documentSnapshot.toObject(Message.class);
                                 messages.add(message);
 
@@ -257,6 +303,29 @@ public class MessengerFragment extends Fragment {
                     }
                 });
     }
+
+    /*private void loadUserData() {
+        ArrayList<User> friends = new ArrayList<>();
+        db.collection("users")
+                .document(mUser.getEmail())
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()){
+                            for(QueryDocumentSnapshot documentSnapshot: task.getResult()){
+//                                Just like GSON..... Friend has to be Serializable,
+//                                has to exactly match the variable names with the keys in the documents,
+//                                and must have getters, setters, and toString() ....
+
+                                User friend = documentSnapshot.toObject(User.class);
+                                friends.add(friend);
+
+                            }
+                            updateUserRecyclerView(friends);
+                        }
+                    }
+                });
+    }*/
 
     public void deleteUser(String messageEmail) {
         db.collection("users")

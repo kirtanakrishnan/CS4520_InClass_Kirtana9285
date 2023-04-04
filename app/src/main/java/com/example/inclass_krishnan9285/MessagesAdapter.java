@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -25,6 +24,12 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.ViewHo
 
     public MessagesAdapter(ArrayList<Message> messages, Context context) {
         this.messages = messages;
+        Message message = new Message("test", "hi");
+        Message message2 = new Message("test", "bye");
+
+        this.messages.add(message);
+        this.messages.add(message2);
+
         if (context instanceof IMessagesListRecyclerAction) {
             this.mListener = (IMessagesListRecyclerAction) context;
         } else {
@@ -50,8 +55,8 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.ViewHo
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.textViewName = itemView.findViewById(R.id.textViewName);
-            this.messageTextView = itemView.findViewById(R.id.messageTextView);
+            this.textViewName = itemView.findViewById(R.id.userName);
+            this.messageTextView = itemView.findViewById(R.id.userDisplayName);
            // this.buttonAddEdit = itemView.findViewById(R.id.buttonAddEdit);
         }
 
@@ -76,6 +81,8 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.ViewHo
                 .from(parent.getContext())
                 .inflate(R.layout.recycler_row, parent, false);
 
+        Log.d("demo", "loaded recyclerview");
+
         return new ViewHolder(itemRecyclerView);
     }
 
@@ -87,13 +94,6 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.ViewHo
         holder.getTextViewName().setText(curMessage.getUser());
         holder.getMessageTextView().setText(curMessage.getMessage());
 
-       /* holder.getButtonMessage().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d(TAG, "Edit clicked on: "+ messages.get(holder.getAdapterPosition()).toString());
-                mListener.editButtonClickedFromRecyclerView(messages.get(holder.getAdapterPosition()));
-            }
-        });*/
 
 
     }

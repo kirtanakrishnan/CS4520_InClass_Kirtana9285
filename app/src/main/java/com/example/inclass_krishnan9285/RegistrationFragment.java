@@ -46,6 +46,7 @@ public class RegistrationFragment extends Fragment {
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
 
+    protected Message message = new Message();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private IRegisterFragmentAction mListener;
@@ -156,20 +157,29 @@ public class RegistrationFragment extends Fragment {
                                         //Map<String, String> friend = new HashMap<>();
                                         //friend.put("email", mUser.getEmail());
 
-                                        Map<String, Object> user = new HashMap<>();
-                                        user.put("user", mUser.getEmail());
+                                        User user = new User(firstNameString, lastNameString, displayNameRegisterString, emailString);
 
-
+                                       // Map<String, Object> user = new HashMap<>();
+                                       // user.put("email", mUser.getEmail());
+                                       // user.put("fname", mUser.getDisplayName());
 
 
                                         db.collection("users")
-                                                .add(user)
-                                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                .document(mUser.getEmail())
+                                                .set(user)
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void unused) {
+                                                        Log.d("demo", "DocumentSnapshot added with ID: " );
+                                                    }
+                                                })
+                                                /*.addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                                     @Override
                                                     public void onSuccess(DocumentReference documentReference) {
                                                         Log.d("demo", "DocumentSnapshot added with ID: " + documentReference.getId());
+                                                        message.setMessageID(mUser.getUid());
                                                     }
-                                                })
+                                                })*/
                                                 .addOnFailureListener(new OnFailureListener() {
                                                     @Override
                                                     public void onFailure(@NonNull Exception e) {
