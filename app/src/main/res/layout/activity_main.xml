@@ -78,13 +78,12 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonInClass05" />
 
     <Button
-        android:id="@+id/buttonInClass08"
+        android:id="@+id/buttonInClass0809"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/inClass08"
+        android:text="@string/inClass0809"
         app:layout_constraintEnd_toEndOf="@+id/buttonInClass06"
-        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="@+id/buttonInClass06"
         app:layout_constraintTop_toBottomOf="@+id/buttonInClass06" />
 

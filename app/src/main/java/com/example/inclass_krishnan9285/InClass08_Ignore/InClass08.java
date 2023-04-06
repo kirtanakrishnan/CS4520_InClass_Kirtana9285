@@ -1,9 +1,10 @@
-package com.example.inclass_krishnan9285;
+package com.example.inclass_krishnan9285.InClass08_Ignore;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.inclass_krishnan9285.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -13,6 +14,7 @@ public class InClass08 extends AppCompatActivity implements ILoginFragmentAction
     private AuthenticationFragment authenticationFragment;
     private MessengerFragment messengerFragment;
     private RegistrationFragment registrationFragment;
+    private ProfileFragment profileFragment;
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
 
@@ -76,6 +78,13 @@ public class InClass08 extends AppCompatActivity implements ILoginFragmentAction
     @Override
     public void logoutPressed() {
 
+    }
+
+    @Override
+    public void toProfile() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentContainerView, profileFragment.newInstance()).addToBackStack(null)
+                .commit();
     }
 
     @Override

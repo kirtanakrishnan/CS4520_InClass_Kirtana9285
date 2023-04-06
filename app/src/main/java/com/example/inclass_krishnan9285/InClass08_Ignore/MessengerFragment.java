@@ -1,6 +1,5 @@
-package com.example.inclass_krishnan9285;
+package com.example.inclass_krishnan9285.InClass08_Ignore;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -18,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.inclass_krishnan9285.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -33,8 +33,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -48,7 +46,7 @@ public class MessengerFragment extends Fragment {
 
     private String displayName;
     private EditText editTextMessage;
-    private Button buttonAddEdit;
+    private Button buttonAddEdit, profileButton;
 
     private RecyclerView recyclerView;
     private MessagesAdapter messagesAdapter;
@@ -126,6 +124,7 @@ public class MessengerFragment extends Fragment {
 
         editTextMessage = messengerView.findViewById(R.id.messageEditText);
         buttonAddEdit = messengerView.findViewById(R.id.buttonAddEdit);
+        profileButton = messengerView.findViewById(R.id.profileButton);
 
 
         //      Setting up RecyclerView........
@@ -134,6 +133,13 @@ public class MessengerFragment extends Fragment {
         messagesAdapter = new MessagesAdapter(mMessages, getContext());
         recyclerView.setLayoutManager(recyclerViewLayoutManager);
         recyclerView.setAdapter(messagesAdapter);
+
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.toProfile();
+            }
+        });
 
         buttonAddEdit.setOnClickListener(new View.OnClickListener() {
             @Override

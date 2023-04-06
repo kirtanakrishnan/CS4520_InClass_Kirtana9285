@@ -5,11 +5,11 @@
     android:id="@+id/Layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InClass08">
+    tools:context=".InClass08_Ignore.InClass08">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
-        android:name="com.example.inclass_krishnan9285.AuthenticationFragment"
+        android:name="com.example.inclass_krishnan9285.InClass08_Ignore.AuthenticationFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

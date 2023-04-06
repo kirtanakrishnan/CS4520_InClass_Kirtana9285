@@ -62,4 +62,24 @@
     <string name="confirmPassword">Confirm Password</string>
     <string name="registerButtonNow">Register Now</string>
     <string name="enterMessage">Send a Message!</string>
+    <string name="profile">Profile</string>
+    <string name="firstNameEnter">First Name:</string>
+    <string name="lastNameEnter">Last Name:</string>
+    <string name="displayNameEnter">Display Name:</string>
+    <string name="editProfile">Edit Profile</string>
+    <string name="confirmEdits">Confirm Edits</string>
+    <string name="editFirstName">New First Name</string>
+    <string name="editLastName">New Last Name</string>
+    <string name="newDisplayName">New Display Name</string>
+    <string name="inClass0809">InClass08/09</string>
+    <string name="logout">logout</string>
+    <string name="add_button">Add Chat</string>
+    <string name="select_user_instruction">Select User</string>
+    <string name="typeHere">Type Here...</string>
+    <string name="chatName">Chat Name</string>
+    <string name="textView">TextView</string>
+    <string name="recentChats">Recent Chats</string>
+    <string name="friend">friend 1</string>
+    <string name="chat">Chat</string>
+    <string name="text">text</string>
 </resources>

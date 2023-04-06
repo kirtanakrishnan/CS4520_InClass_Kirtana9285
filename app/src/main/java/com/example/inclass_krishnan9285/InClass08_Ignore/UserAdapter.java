@@ -1,4 +1,4 @@
-package com.example.inclass_krishnan9285;
+package com.example.inclass_krishnan9285.InClass08_Ignore;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.inclass_krishnan9285.R;
 
 import java.util.ArrayList;
 
