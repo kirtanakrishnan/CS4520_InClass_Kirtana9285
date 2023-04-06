@@ -22,6 +22,10 @@ import com.google.firebase.firestore.WriteBatch;
 
 import java.util.ArrayList;
 
+/*
+Kirtana Krishnan
+Assignment #8/9
+ */
 public class InClass0809 extends AppCompatActivity implements IconnectToActivity {
 
     private FirebaseAuth mAuth;
